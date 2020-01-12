@@ -1,0 +1,52 @@
+﻿@model Student
+<!-- Modal -->
+<div class="modal fade" id="add-contact" tabindex="-1" role="dialog" aria-labelledby="addContactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addContactLabel">Kişi Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form asp-action="Contact" enctype="multipart/form-data">
+                <div class="modal-body">
+
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+
+                    <div class="form-group">
+                        <label asp-for="tc_no">TC</label>
+                        <input asp-for="tc_no" class="form-control" />
+                        <span asp-validation-for="tc_no" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="name">İsim</label>
+                        <input asp-for="name" class="form-control" />
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="surname">Soyisim</label>
+                        <input asp-for="surname" class="form-control" />
+                        <span asp-validation-for="surname" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="email">Email</label>
+                        <input asp-for="email" class="form-control" />
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Çıkış</button>
+                    <button type="submit" class="btn btn-primary" data-save="modal">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

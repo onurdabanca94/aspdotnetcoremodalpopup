@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "Kişi Formu";
+}
+<div id="modal-placeholder"></div>
+
+<button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#add-contact" data-url="@Url.Action("Contact")">
+    Ekle
+</button>
+
+@await Html.PartialAsync("_Table", Model)

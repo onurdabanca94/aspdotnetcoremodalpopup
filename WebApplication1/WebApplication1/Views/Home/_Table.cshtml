@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Student>
+
+<table id="contacts" class="table mt-5" data-url="@Url.Action("Index")">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>TC Numarası</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Email</th>
+            <th>Aksiyon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
+            <tr>
+                <td>@contact.id</td>
+                <td>@contact.tc_no</td>
+                <td>@contact.name</td>
+                <td>@contact.surname</td>
+                <td>@contact.email</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit-@contact.id">Düzenle</button>
+                        <a href="/Home/Delete?sid=@contact.id"><button type="button" class="btn btn-danger">Sil</button></a>
+                    </div>
+                </td>
+
+                <div id="edit-@contact.id" class="modal" tabindex="-1" role="dialog">
+                    <form action="/Home/PutContact" method="POST">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Düzenle</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <input name="IsValid" type="hidden" value="True">
+
+                                    <input type="hidden" id="id" name="id" value="@contact.id" />
+
+                                    <div class="form-group">
+                                        <label for="tc_no">TC</label>
+                                        <input class="form-control" type="text" data-val="true" data-val-required="The TC field is required." id="tc_no" name="tc_no" value="@contact.tc_no">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="TC" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">İsim</label>
+                                        <input class="form-control" type="text" data-val="true" data-val-required="The name field is required." id="name" name="name" value="@contact.name">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="Ad" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="surname">Soyad</label>
+                                        <input class="form-control" type="text" data-val="true" data-val-required="The surname field is required." id="surname" name="surname" value="@contact.surname">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="Soyad" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input class="form-control" type="email" data-val="true" data-val-required="The email field is required." id="email" name="email" value="@contact.email">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                    </div>
+
+
+                                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8P3k1qiyCLVNgKZSrUJpE4DnW7T_nCEqM-OXcMf3blpM5E--JbJRhaCVOHmYctzIcuwQqga67DU7SqPRYKexRhzskc9F4gM1Cb1oTlGmeOp_74_GMEwm92ZrhtCEZG-0m_7O2-XV0v2X84fNzD2_dio">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </tr>
+        }
+    </tbody>
+</table>
+
